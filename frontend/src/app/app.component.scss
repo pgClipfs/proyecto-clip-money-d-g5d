@@ -1,0 +1,14 @@
+@import '../styles.scss';
+.main-container{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    padding: 10px;
+    .main-header{
+        height: $height-1;
+        background-color: $main-color;
+        border-radius: $radius-1;
+        margin-bottom: $space-between-box;
+    }
+}

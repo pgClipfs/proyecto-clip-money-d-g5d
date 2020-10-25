@@ -1,0 +1,45 @@
+@import "/src/styles.scss";
+.home {
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "cuentas cuentas"
+      "transferencia tarjetas"
+      "transferencia contactos"
+      "ingreso-extraccion ingreso-extraccion"
+      "nueva-transferencia nuevo-contacto"
+      "inversiones inversiones";
+    column-gap: $space-between-box;
+    row-gap: $space-between-box;
+  }
+  @include set-box(cuentas, 2);
+
+  @include set-box(transferencia, 2, $space-between-box);
+
+  @include set-box(tarjetas, 1);
+
+  @include set-box(contactos, 1);
+
+  @include set-box(ingreso-extraccion, 1);
+  .ingreso-extraccion{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    svg{
+      font-size: 28px;
+      color: white;
+    }
+    .custom-title{
+      @include basic-title();
+    }
+  }
+
+  @include set-box(nueva-transferencia, 1);
+
+  @include set-box(nuevo-contacto, 1);
+
+  @include set-box(inversiones, 2);
+}

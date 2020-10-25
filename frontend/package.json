@@ -41,6 +41,7 @@
     "@angular/compiler-cli": "~10.1.4",
     "@babel/core": "^7.11.6",
     "@compodoc/compodoc": "^1.1.11",
+    "@schematics/angular": "^10.1.7",
     "@storybook/addon-actions": "^6.0.25",
     "@storybook/addon-essentials": "^6.0.25",
     "@storybook/addon-links": "^6.0.25",

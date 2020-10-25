@@ -1,0 +1,20 @@
+@import './variables.scss';
+@mixin set-box($area, $height, $fix: 0) {
+    .#{$area} {
+      grid-area: $area;
+      background-color: $main-color;
+      border-radius: $radius-1;
+      height: $height * $height-1 + $fix;
+      &>.title{
+        text-align: right;
+        position: relative;
+        top: $height * $height-1 + $fix - 30px;
+        right: 10px;
+        @include basic-title()
+      }
+    }
+  }
+  
+@mixin basic-title {
+  color: $text-color-1;
+}
