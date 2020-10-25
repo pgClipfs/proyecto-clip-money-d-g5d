@@ -1,7 +1,8 @@
-# WalletApp Front
+# ClipMoney Front
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.4.
-
+### [Diseño Figma](https://www.figma.com/file/cMxgh22MjWSGtH3TOm7Q4n/clip-wallet-app?node-id=31%3A498)
+### [Arquitectura Frontend](https://github.com/pgClipfs/proyecto-clip-money-d-g5d/wiki/Arquitectura-Frontend)
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
