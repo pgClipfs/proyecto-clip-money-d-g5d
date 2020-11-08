@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PresentationModule } from './presentation/presentation.module';
 import { CoreModule } from './core/core.module';
 import { ApplicationModule } from './application/application.module';
 
@@ -15,8 +14,7 @@ import { ApplicationModule } from './application/application.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    ApplicationModule,
-    PresentationModule
+    ApplicationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

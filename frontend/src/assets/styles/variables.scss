@@ -1,5 +1,9 @@
+@function calculate-height($height,$sections) {
+    @return $height / $sections;
+  }
 $main-color: #0e8bff;
 $radius-1: 5px;
 $height-1: 75px;
+$calculate-height: calculate-height(100vh,8);
 $space-between-box: 5px;
 $text-color-1: white;
