@@ -16,7 +16,7 @@
   }
   @include set-box(cuentas, 2);
 
-  @include set-box(transferencia, 2, $space-between-box);
+  @include set-box(transferencia, 2);
 
   @include set-box(tarjetas, 1);
 
@@ -41,5 +41,5 @@
 
   @include set-box(nuevo-contacto, 1);
 
-  @include set-box(inversiones, 2);
+  @include set-box(inversiones, 2 , 1vh);
 }

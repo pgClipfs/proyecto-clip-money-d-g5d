@@ -1,15 +1,25 @@
 @import './variables.scss';
+/**
+  En un container que utilice css grid, se le pasa el nombre del area y la altura, siendo este un multiplicador.
+*/
 @mixin set-box($area, $height, $fix: 0) {
+  // $fix se utiliza principalmente en el ultimo box, ej: inversiones en home,
+  // se resta $fix a la altura y se le agrega a margin-bottom
     .#{$area} {
       grid-area: $area;
       background-color: $main-color;
       border-radius: $radius-1;
-      height: $height * $height-1 + $fix;
+      height: $height * $calculate-height - $space-between-box - $fix;
+      margin-bottom: $fix;
+      &:hover{
+        transition: all .2s ease;
+        background-color: lighten($main-color,8%);
+      }
       &>.title{
         text-align: right;
         position: relative;
-        top: $height * $height-1 + $fix - 30px;
-        right: 10px;
+        top: $height * $calculate-height - $space-between-box - $fix - 4vh;
+        right: 15px;
         @include basic-title()
       }
     }
@@ -17,4 +27,7 @@
   
 @mixin basic-title {
   color: $text-color-1;
+}
+@function calculate-light(){
+  @return $main-color + 00005;
 }
