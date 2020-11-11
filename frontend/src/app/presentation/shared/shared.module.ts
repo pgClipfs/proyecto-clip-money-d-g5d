@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TransactionComponent } from './transaction/transaction.component';
+import { MainHeaderComponent } from './main-header/main-header.component';
 
 
 
 @NgModule({
-  declarations: [TransactionComponent],
+  declarations: [TransactionComponent, MainHeaderComponent],
   imports: [
     CommonModule
   ],
-  exports: [TransactionComponent]
+  exports: [TransactionComponent, MainHeaderComponent]
 })
 export class SharedModule { }
