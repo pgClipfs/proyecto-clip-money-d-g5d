@@ -18,9 +18,15 @@
       &>.title{
         text-align: right;
         position: relative;
-        top: $height * $calculate-height - $space-between-box - $fix - 4vh;
+        //top: $height * $calculate-height - $space-between-box - $fix - 4vh;
+        top: 15px;
         right: 15px;
-        @include basic-title()
+        @include basic-title();
+      }
+    }
+    @media (max-height: 500px) {
+      .#{$area}{
+        height: $height * ($calculate-height + 5vh) - $space-between-box - $fix;
       }
     }
   }
