@@ -1,0 +1,6 @@
+- request:
+    url: ^/
+    method: HEAD
+  response:
+    status: 200
+    body: ''

@@ -1,0 +1,32 @@
+@import "/src/styles.scss";
+.header{
+    width: 100%;
+    background-color: $main-color;
+    border-radius: $radius-1;
+    height: $calculate-height;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+    & .arrow{
+        width: 20px;
+        &.left{
+            transform: rotate(180deg);
+        }
+        &.none{
+            display: none;
+        }
+    }
+    &__content{
+        display: flex;
+        align-items: center;
+        height: 100%;
+        & img{
+            max-width: 25px;
+        }
+        & p{
+            font-size: $font-size-1;
+            color: $text-color-1;
+            margin-left: 15px;
+        }
+    }
+}

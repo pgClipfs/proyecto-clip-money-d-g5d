@@ -1,0 +1,18 @@
+#######  stubs\base.yaml  #####################################
+
+- request:
+    url: ^/
+    method: HEAD
+  response:
+    status: 200
+    body: ''
+
+#######  stubs\perfil\perfil.yaml  #####################################
+
+- request:
+    url: ^/perfil
+    method: GET
+  response:
+    status: 200
+    file: ./perfil/perfilData.json
+

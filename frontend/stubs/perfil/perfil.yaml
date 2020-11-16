@@ -1,0 +1,6 @@
+- request:
+    url: ^/perfil
+    method: GET
+  response:
+    status: 200
+    file: ./perfil/perfilData.json
