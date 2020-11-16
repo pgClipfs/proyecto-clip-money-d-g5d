@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { ApplicationModule } from './application/application.module';
 import { SharedModule } from './presentation/shared/shared.module';
 import { LoginComponent } from './presentation/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { LoginComponent } from './presentation/login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     CoreModule,
     ApplicationModule,
     SharedModule

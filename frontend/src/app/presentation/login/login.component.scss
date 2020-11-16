@@ -33,7 +33,11 @@
                 color: $main-color;
             }
         }
-        & a{
+        & button{
+            &:disabled{
+                background-color: lighten($main-color,12);
+            }
+            transition: all ease .5s;
             margin-top: 80px;
             background-color: $main-color;
             border: none;
