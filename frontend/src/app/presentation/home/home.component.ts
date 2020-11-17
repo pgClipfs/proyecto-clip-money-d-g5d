@@ -12,4 +12,19 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  accounts = [
+    {
+      amount: '12045.0',
+      type: 'Pesos'
+    },
+    {
+      amount: '600.02',
+      type: 'U$D'
+    },
+    {
+      amount: '0.0005',
+      type: 'BTC'
+    }
+  ]
+
 }
