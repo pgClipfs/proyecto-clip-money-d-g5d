@@ -1,0 +1,9 @@
+<img src="assets/icons/icon-accounts.svg" alt="">
+<div class="accounts mx-auto">
+    <ng-container *ngFor="let account of accounts; first as isFirst">
+        <div class="account" [class.first-account]="isFirst">
+            <p class="type">{{account.type}}</p>
+            <p class="amount">{{account.amount}}</p>
+        </div>
+    </ng-container>
+</div>

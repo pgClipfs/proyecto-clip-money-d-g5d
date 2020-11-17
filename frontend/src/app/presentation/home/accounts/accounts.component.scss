@@ -1,0 +1,42 @@
+@import "/src/styles.scss";
+.accounts{
+    height: 100%;
+    width: 50%;
+    max-width: 300px;
+    color: $text-color-1;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "first first";
+    .account{
+        &.first-account{
+            ::before{
+                content: '$ ';
+            }
+            grid-area: first;
+            position: relative;
+            text-align: center;
+            width: 100%;
+            margin-bottom: -50px;
+            .type{
+                display: none;
+            }
+            .amount{
+                font-size: 2.1rem;
+            }
+        }
+        .type{
+            font-size: .8rem;
+        }
+        .amount{
+            font-size: 1.5rem;
+        }
+    }
+}
+img{
+    max-width: 50px;
+    position: absolute;
+    margin: 10px;
+}
