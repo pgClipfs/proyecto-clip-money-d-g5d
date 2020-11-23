@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/application/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService : AuthService
     ) { }
 
   ngOnInit(): void {
@@ -32,10 +34,24 @@ export class LoginComponent implements OnInit {
   send(event: Event) {
 
     event.preventDefault();
-    this.router.navigateByUrl("/home")
-    // TODO: Validate user
-    // this.isInvalid
-    // this.loading
+    this.loading = true;
+
+    if (this.form.valid) {
+      this.authService.login(this.form.value)
+        .subscribe(
+          res => {
+            console.log('LOGIN RESPONSE',res);
+          },
+          err => {
+            console.log('LOGIN ERROR',err);
+          },
+          () => this.router.navigateByUrl("/home")
+        );
+    } else {
+
+      this.form.markAllAsTouched();
+      this.loading = false;
+    }
   }
 
   // Getters

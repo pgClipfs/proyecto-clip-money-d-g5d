@@ -4,3 +4,18 @@
   response:
     status: 200
     body: ''
+
+- request:
+    url: ^/perfil
+    method: GET
+  response:
+    status: 200
+    file: ./perfil/perfilData.json
+
+- request:
+    url: ^/login
+    method: POST
+  response:
+    status: 200
+    latency: 1500
+    file: ./login/login.json
