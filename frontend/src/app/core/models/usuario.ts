@@ -11,4 +11,10 @@ export interface User {
     cuentas: Cuenta[];
     contactos: Contacto[];
     transferencias: Transferencia[];
+    password: string;
+}
+
+export interface UserRegister{
+  Email: string;
+  Password: string;
 }

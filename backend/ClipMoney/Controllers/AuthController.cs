@@ -29,7 +29,7 @@ namespace ClipMoney.Controllers
         /// <returns></returns>
         [HttpPost("login")]
         [Produces(typeof(string))]
-        public IActionResult Get(UserModel user)
+        public IActionResult Post(UserModel user)
         {
             var token = _authBusinessLogic.LoginUser(user);
             return Ok(token);
