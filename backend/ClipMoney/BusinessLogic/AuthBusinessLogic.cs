@@ -38,27 +38,30 @@ namespace ClipMoney.BusinessLogic
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public string LoginUser(UserModel user)
+        public UserTokenModel LoginUser(UserModel user)
         {
+            var userToken = new UserTokenModel();
             try
             {
                 var userDb = _authRepository.LoginUser(user);
                 if (userDb != null)
                 {
                     var token = GenerarJWT(userDb);
-                    return token;
+                    userToken.UserToken = token ;
+                    
                 }
                 else
                 {
-                    return "Usuario y/o contraseña incorrectos.";
+                    userToken.UserToken = "Usuario y/o contraseña incorrectos.";
                 }
             }
             catch (Exception ex)
             {
 
-                return ex.ToString();
+                //return ex.ToString();
             }
-           
+
+            return userToken;
         }
 
         /// <summary>
