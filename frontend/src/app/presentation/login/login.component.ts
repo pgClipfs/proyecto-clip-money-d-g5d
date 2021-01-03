@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         Email: this.form.value.name,
         Password: this.form.value.password
       }
-      const token = await (await this.authService.login(this.user));
+      const token = (await this.authService.login(this.user)).UserToken;
       if (token !== 'Usuario y/o contraseña incorrectos.'){
         this.authService.setCurrentUser(token);
         this.router.navigateByUrl("/home")
