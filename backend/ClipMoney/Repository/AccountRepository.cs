@@ -1,4 +1,5 @@
-﻿using ClipMoney.Entities;
+﻿using AutoMapper;
+using ClipMoney.Entities;
 using ClipMoney.Models;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,11 @@ namespace ClipMoney.Repository
     public class AccountRepository
     {
         private readonly BilleteraVirtualContext _context;
-
-        public AccountRepository(BilleteraVirtualContext context)
+        private readonly IMapper _mapper;
+        public AccountRepository(BilleteraVirtualContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         public PostUserMoneyModel PostUserMoney(PostUserMoneyModel user)
@@ -32,6 +34,14 @@ namespace ClipMoney.Repository
             return user;
            
         }
-        
+
+        public AccountModel GetAccountByUserId(int userId)
+        {
+            var userAccount = (from c in _context.Cuenta
+                               where c.IdUsuario == userId
+                               select c).FirstOrDefault();
+
+            return _mapper.Map<AccountModel>(userAccount);
+        }
     }
 }

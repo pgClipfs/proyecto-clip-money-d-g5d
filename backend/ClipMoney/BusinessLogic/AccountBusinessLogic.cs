@@ -23,7 +23,7 @@ namespace ClipMoney.BusinessLogic
                 if (user.UserId <= 0)
                     result.AddInputDataError("El id de usuario es requerido");
 
-                if (user.Amount <= 0)
+                if (user.Amount == 0)
                     result.AddInputDataError("El monto es requerido");
 
                 if (!result.Ok)
@@ -37,6 +37,27 @@ namespace ClipMoney.BusinessLogic
                 result.AddInternalError(ex.ToString());
             }
             
+            return result;
+        }
+
+        public ResultModel<AccountModel> GetAccountByUserId(int userId)
+        {
+            var result = new ResultModel<AccountModel>();
+            try
+            {
+                if (userId <= 0)
+                    result.AddInputDataError("El id de usuario es requerido.");
+
+                if (!result.Ok)
+                    return result;
+
+                result.Object = _accountRepository.GetAccountByUserId(userId);
+            }
+            catch (Exception ex)
+            {
+                result.AddInternalError(ex.ToString());
+            }
+
             return result;
         }
     }
