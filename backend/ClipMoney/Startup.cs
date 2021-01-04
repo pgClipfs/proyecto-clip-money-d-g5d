@@ -61,6 +61,12 @@ namespace ClipMoney
 
             services.AddTransient<AuthRepository>();
             services.AddTransient<AuthBusinessLogic>();
+
+            services.AddTransient<DepositRepository>();
+            services.AddTransient<DepositBusinessLogic>();
+
+            services.AddTransient<AccountRepository>();
+            services.AddTransient<AccountBusinessLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
