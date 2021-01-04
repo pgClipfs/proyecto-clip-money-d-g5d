@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace ClipMoney.Models
 {
-    public class DepositModel
+    public class TransferModel
     {
         public int Id { get; set; }
         public int IdOutboundAccount { get; set; }
         public int IdInboundAccount { get; set; }
         public DateTime Date { get; set; }
         public TimeSpan Time { get; set; }
-        public float Amount { get; set; }
+        public decimal Amount { get; set; }
         
     }
 }

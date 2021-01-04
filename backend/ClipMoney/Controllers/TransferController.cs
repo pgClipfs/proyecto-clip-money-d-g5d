@@ -12,19 +12,19 @@ namespace ClipMoney.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DepositController : ControllerBase
+    public class TransferController : ControllerBase
     {
-        private readonly DepositBusinessLogic _depositBusinessLogic;
+        private readonly TransferBusinessLogic _depositBusinessLogic;
 
-        public DepositController(DepositBusinessLogic depositBusinessLogic)
+        public TransferController(TransferBusinessLogic depositBusinessLogic)
         {
             _depositBusinessLogic = depositBusinessLogic;
         }
 
         [HttpPost]
-        public IActionResult DepositMoney(DepositModel deposit)
+        public IActionResult DepositMoney(TransferModel deposit)
         {
-            var result = _depositBusinessLogic.DepositMoney(deposit);
+            var result = _depositBusinessLogic.TransferMoney(deposit);
             return Ok(result);
         }
     }

@@ -62,8 +62,8 @@ namespace ClipMoney
             services.AddTransient<AuthRepository>();
             services.AddTransient<AuthBusinessLogic>();
 
-            services.AddTransient<DepositRepository>();
-            services.AddTransient<DepositBusinessLogic>();
+            services.AddTransient<TransferRepository>();
+            services.AddTransient<TransferBusinessLogic>();
 
             services.AddTransient<AccountRepository>();
             services.AddTransient<AccountBusinessLogic>();

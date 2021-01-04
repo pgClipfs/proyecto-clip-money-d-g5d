@@ -21,7 +21,7 @@ namespace ClipMoney.Repository
         public PostUserMoneyModel PostUserMoney(PostUserMoneyModel user)
         {
             var userAccount = (from c in _context.Cuenta
-                               where c.IdUsuario == user.UserId
+                               where c.IdCuenta == user.UserAccountId
                                select c).FirstOrDefault();
             if(userAccount != null)
             {

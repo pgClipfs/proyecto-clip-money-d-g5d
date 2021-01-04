@@ -7,7 +7,7 @@ namespace ClipMoney.Models
 {
     public class PostUserMoneyModel
     {
-        public int UserId { get; set; }
+        public int UserAccountId { get; set; }
 
         public decimal Amount { get; set; }
     }

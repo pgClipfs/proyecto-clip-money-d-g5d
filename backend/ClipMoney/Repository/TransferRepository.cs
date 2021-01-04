@@ -8,32 +8,24 @@ using System.Threading.Tasks;
 
 namespace ClipMoney.Repository
 {
-    public class DepositRepository
+    public class TransferRepository
     {
         private readonly BilleteraVirtualContext _context;
         private readonly IMapper _mapper;
 
-        public DepositRepository(BilleteraVirtualContext context, IMapper mapper)
+        public TransferRepository(BilleteraVirtualContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public DepositModel DepositMoney(DepositModel deposit)
+        public TransferModel TransferMoney(TransferModel deposit)
         {
-            try
-            {
                 deposit.Date = DateTime.Now;
                 deposit.Time = DateTime.Now.TimeOfDay;
-                var newDeposit = _context.Depositos.Add(_mapper.Map<Deposito>(deposit));
+                var newDeposit = _context.Transferencia.Add(_mapper.Map<Transferencium>(deposit));
                 _context.SaveChanges();
-                return _mapper.Map<DepositModel>(newDeposit.Entity);
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-            
+                return _mapper.Map<TransferModel>(newDeposit.Entity);
         }
     }
 }

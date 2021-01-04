@@ -20,7 +20,7 @@ namespace ClipMoney.BusinessLogic
             var result = new ResultModel<PostUserMoneyModel>();
             try
             {
-                if (user.UserId <= 0)
+                if (user.UserAccountId <= 0)
                     result.AddInputDataError("El id de usuario es requerido");
 
                 if (user.Amount == 0)
