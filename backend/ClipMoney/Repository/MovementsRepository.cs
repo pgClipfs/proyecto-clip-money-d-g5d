@@ -27,6 +27,7 @@ namespace ClipMoney.Repository
                              join mov in _context.Movimientos on m.IdMovimiento equals mov.IdMovimiento
                              join cd in _context.Cuenta on m.IdCuentaDestino equals cd.IdCuenta
                              join ud in _context.Usuarios on cd.IdUsuario equals ud.IdUsuario
+                             where m.IdCuenta == accountId
                              select new MovementModel 
                              {
                                  Id = m.Id,
