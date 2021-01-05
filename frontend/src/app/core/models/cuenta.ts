@@ -2,10 +2,13 @@ import { Transferencia } from './transferencia';
 import { Value } from './value';
 
 export interface Cuenta {
-    id: number;
-    tipo: string;
-    nombre: string;
-    CBU: string;
-    saldo: Value;
-    transferencia: Transferencia[];
+    UserId: number;
+    Id:number;
+    CreationDate: Date;
+    CreationTime: Date;
+    TypeAccountId: string;
+    amount: number;
+    Movements: Transferencia[];
+    CurrencyTypeId: any; //Falta agregar el model de tipoCuenta
+    CryptocurrencyId: any; //Falta agregar el model de crypto
 }
