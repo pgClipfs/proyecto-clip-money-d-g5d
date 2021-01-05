@@ -8,18 +8,18 @@
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
         <div>
             <div class="form-group row ">
-                <label class="col-sm-2 col-form-label">Cuenta Saliente:</label>
+                <label class="col-sm-2 col-form-label">Saliente:</label>
                 <div class="col-sm-10">
-                    <input [formControl]="form.controls.monto" type="number" class="form-control">
+                    <input [formControl]="form.controls.cuentaEntrante" type="number" class="form-control">
                 </div>
             </div>
             <div class="form-group row ">
-                <label class="col-sm-2 col-form-label">Cuenta entrante:</label>
+                <label class="col-sm-2 col-form-label">Dinero:</label>
                 <div class="col-sm-10">
                     <input [formControl]="form.controls.monto" type="number" class="form-control">
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary m-2">Transferir</button>
+            <button type="submit" class="btn btn-primary m-2" (click)="postTransferir()">Transferir</button>
         </div>
     </div>
 </div>

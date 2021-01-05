@@ -1,5 +1,5 @@
 export class PostTransfer{
-    IdInboundAccount: number
-    IdOutboundAccount: number
+    IdOutboundAccount: number;
+    IdInboundAccount: number;
     Amount:number;
 }
