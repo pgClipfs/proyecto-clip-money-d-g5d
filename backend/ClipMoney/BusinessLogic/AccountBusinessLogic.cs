@@ -1,4 +1,5 @@
 ﻿using ClipMoney.Models;
+using ClipMoney.Models.Enums;
 using ClipMoney.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,11 @@ namespace ClipMoney.BusinessLogic
     public class AccountBusinessLogic
     {
         private readonly AccountRepository _accountRepository;
-
-        public AccountBusinessLogic(AccountRepository accountRepository)
+        private readonly MovementsRepository _movementsRepository;
+        public AccountBusinessLogic(AccountRepository accountRepository, MovementsRepository movementsRepository)
         {
             _accountRepository = accountRepository;
+            _movementsRepository = movementsRepository;
         }
         public ResultModel<PostUserMoneyModel> PostMoney(PostUserMoneyModel user)
         {
@@ -29,8 +31,23 @@ namespace ClipMoney.BusinessLogic
                 if (!result.Ok)
                     return result;
 
+
                 result.Object = _accountRepository.PostUserMoney(user);
 
+                var movement = new MovementModel();
+                movement.AccountId = user.UserAccountId;
+                movement.DestinationAccountId = user.UserAccountId;
+                movement.Amount = user.Amount;
+                if(user.Amount < 0)
+                {
+                    movement.MovementId = (int)MovementEnum.Extraction;
+                }
+                else
+                {
+                    movement.MovementId = (int)MovementEnum.Deposit;
+                }
+                _movementsRepository.AddMovement(movement);
+                
             }
             catch (Exception ex)
             {

@@ -7,9 +7,14 @@ namespace ClipMoney.Entities
 {
     public partial class Movimiento
     {
+        public Movimiento()
+        {
+            MovimientosXusuarios = new HashSet<MovimientosXusuario>();
+        }
+
         public int IdMovimiento { get; set; }
-        public int? IdExtraccion { get; set; }
-        public int? IdTransferencia { get; set; }
-        public int? IdDeposito { get; set; }
+        public string Nombre { get; set; }
+
+        public virtual ICollection<MovimientosXusuario> MovimientosXusuarios { get; set; }
     }
 }

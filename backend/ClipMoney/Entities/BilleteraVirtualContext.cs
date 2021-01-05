@@ -23,11 +23,21 @@ namespace ClipMoney.Entities
         public virtual DbSet<Extraccion> Extraccions { get; set; }
         public virtual DbSet<Moneda> Monedas { get; set; }
         public virtual DbSet<Movimiento> Movimientos { get; set; }
+        public virtual DbSet<MovimientosXusuario> MovimientosXusuarios { get; set; }
         public virtual DbSet<PlazoFijo> PlazoFijos { get; set; }
         public virtual DbSet<Servicio> Servicios { get; set; }
         public virtual DbSet<TipoCuentum> TipoCuenta { get; set; }
         public virtual DbSet<Transferencium> Transferencia { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=billetera_virtual;Trusted_Connection=True;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -200,17 +210,50 @@ namespace ClipMoney.Entities
 
             modelBuilder.Entity<Movimiento>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdMovimiento);
 
-                entity.Property(e => e.IdDeposito).HasColumnName("id_deposito");
+                entity.Property(e => e.IdMovimiento).HasColumnName("id_movimiento");
 
-                entity.Property(e => e.IdExtraccion).HasColumnName("id_extraccion");
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("nombre");
+            });
 
-                entity.Property(e => e.IdMovimiento)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("id_movimiento");
+            modelBuilder.Entity<MovimientosXusuario>(entity =>
+            {
+                entity.ToTable("MovimientosXUsuario");
 
-                entity.Property(e => e.IdTransferencia).HasColumnName("id_transferencia");
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.IdCuenta).HasColumnName("id_cuenta");
+
+                entity.Property(e => e.IdCuentaDestino).HasColumnName("id_cuenta_destino");
+
+                entity.Property(e => e.IdMovimiento).HasColumnName("id_movimiento");
+
+                entity.Property(e => e.Monto)
+                    .HasColumnType("money")
+                    .HasColumnName("monto");
+
+                entity.HasOne(d => d.IdCuentaNavigation)
+                    .WithMany(p => p.MovimientosXusuarioIdCuentaNavigations)
+                    .HasForeignKey(d => d.IdCuenta)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Cuenta_cuentaId");
+
+                entity.HasOne(d => d.IdCuentaDestinoNavigation)
+                    .WithMany(p => p.MovimientosXusuarioIdCuentaDestinoNavigations)
+                    .HasForeignKey(d => d.IdCuentaDestino)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MovimientosXUsuario_CuentaDestinoId");
+
+                entity.HasOne(d => d.IdMovimientoNavigation)
+                    .WithMany(p => p.MovimientosXusuarios)
+                    .HasForeignKey(d => d.IdMovimiento)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MovimientosXUsuario_MovimientoId");
             });
 
             modelBuilder.Entity<PlazoFijo>(entity =>

@@ -1,4 +1,5 @@
 ﻿using ClipMoney.Models;
+using ClipMoney.Models.Enums;
 using ClipMoney.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,12 @@ namespace ClipMoney.BusinessLogic
     {
         private readonly TransferRepository _transferRepository;
         private readonly AccountRepository _accountRepository;
-
-        public TransferBusinessLogic(TransferRepository transferRepository, AccountRepository accountRepository)
+        private readonly MovementsRepository _movementsRepository;
+        public TransferBusinessLogic(TransferRepository transferRepository, AccountRepository accountRepository, MovementsRepository movementsRepository)
         {
             _transferRepository = transferRepository;
             _accountRepository = accountRepository;
+            _movementsRepository = movementsRepository;
         }
 
         public ResultModel<TransferModel> TransferMoney(TransferModel transfer)
@@ -37,8 +39,22 @@ namespace ClipMoney.BusinessLogic
 
                 var accountTransferred = _accountRepository.PostUserMoney(new PostUserMoneyModel { UserAccountId = transfer.IdInboundAccount, Amount = transfer.Amount });
 
-                var accountFromTransfer = _accountRepository.PostUserMoney(new PostUserMoneyModel { UserAccountId = transfer.IdOutboundAccount, Amount = transfer.Amount *= -1 });
-                
+                var movementTransferred = new MovementModel();
+                movementTransferred.Amount = transfer.Amount;
+                movementTransferred.MovementId = (int)MovementEnum.Transfer;
+                movementTransferred.AccountId = transfer.IdOutboundAccount;
+                movementTransferred.DestinationAccountId = transfer.IdInboundAccount;
+                _movementsRepository.AddMovement(movementTransferred);
+
+                var amountNegative = transfer.Amount * -1;
+                var accountFromTransfer = _accountRepository.PostUserMoney(new PostUserMoneyModel { UserAccountId = transfer.IdOutboundAccount, Amount = amountNegative });
+                var movementFromTransfer = new MovementModel();
+                movementFromTransfer.Amount = amountNegative;
+                movementFromTransfer.MovementId = (int)MovementEnum.Transfer;
+                movementFromTransfer.AccountId = transfer.IdInboundAccount;
+                movementFromTransfer.DestinationAccountId = transfer.IdOutboundAccount;
+                _movementsRepository.AddMovement(movementFromTransfer);
+
                 result.Object = _transferRepository.TransferMoney(transfer);
 
             }

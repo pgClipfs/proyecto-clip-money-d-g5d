@@ -12,6 +12,8 @@ namespace ClipMoney.Entities
             DepositoIdCuentaEntranteNavigations = new HashSet<Deposito>();
             DepositoIdCuentaSalienteNavigations = new HashSet<Deposito>();
             Extraccions = new HashSet<Extraccion>();
+            MovimientosXusuarioIdCuentaDestinoNavigations = new HashSet<MovimientosXusuario>();
+            MovimientosXusuarioIdCuentaNavigations = new HashSet<MovimientosXusuario>();
             PlazoFijos = new HashSet<PlazoFijo>();
             Servicios = new HashSet<Servicio>();
             TransferenciumIdCuentaEntranteNavigations = new HashSet<Transferencium>();
@@ -35,6 +37,8 @@ namespace ClipMoney.Entities
         public virtual ICollection<Deposito> DepositoIdCuentaEntranteNavigations { get; set; }
         public virtual ICollection<Deposito> DepositoIdCuentaSalienteNavigations { get; set; }
         public virtual ICollection<Extraccion> Extraccions { get; set; }
+        public virtual ICollection<MovimientosXusuario> MovimientosXusuarioIdCuentaDestinoNavigations { get; set; }
+        public virtual ICollection<MovimientosXusuario> MovimientosXusuarioIdCuentaNavigations { get; set; }
         public virtual ICollection<PlazoFijo> PlazoFijos { get; set; }
         public virtual ICollection<Servicio> Servicios { get; set; }
         public virtual ICollection<Transferencium> TransferenciumIdCuentaEntranteNavigations { get; set; }

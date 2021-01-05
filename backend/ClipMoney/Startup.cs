@@ -35,10 +35,10 @@ namespace ClipMoney
         public void ConfigureServices(IServiceCollection services)
         {
             //Conexion a base de datos de Santi.
-            //services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Santi")));
+            services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Santi")));
 
             //Conexion a base de datos de Valentín.
-            services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Vale")));
+            //services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Vale")));
 
             //Conexion a base de datos de Nico.
             //services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Nico")));
@@ -70,6 +70,9 @@ namespace ClipMoney
 
             services.AddTransient<AccountRepository>();
             services.AddTransient<AccountBusinessLogic>();
+
+            services.AddTransient<MovementsRepository>();
+            services.AddTransient<MovementBusinessLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
