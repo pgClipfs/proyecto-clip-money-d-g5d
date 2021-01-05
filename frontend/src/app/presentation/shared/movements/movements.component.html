@@ -1,18 +1,21 @@
-<table class="table table">
+<a class="btn btn-primary" routerLink="/home">Volver</a>
+<table class="table table mt-2">
     <thead>
         <tr>
-            <th scope="col">id</th>
-            <th scope="col">idCuenta</th>
-            <th scope="col">idCuentaDestino</th>
+            <th scope="col">Id</th>
+            <th scope="col">Cuenta</th>
+            <th scope="col">Cuenta destino</th>
+            <th scope="col">Movimiento</th>
             <th scope="col">Monto</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let movimientos of movimiento">
             <th scope="row">{{movimientos.Id}}</th>
-            <td scope="row">{{movimientos.User.Firstname + movimientos.User.Lastname}}</td>
-            <td scope="row">{{movimientos.UserDestination.Firstname + movimientos.UserDestination.Lastname}}</td>
-            <td scope="row">{{movimientos.Amount}}</td>
+            <td scope="row">{{movimientos.User.Firstname}} {{movimientos.User.Lastname}}</td>
+            <td scope="row">{{movimientos.UserDestination.Firstname}} {{movimientos.UserDestination.Lastname}}</td>
+            <td scope="row">{{movimientos.MovementName}}</td>
+            <td scope="row">${{movimientos.Amount}}</td>
         </tr>
     </tbody>
 </table>

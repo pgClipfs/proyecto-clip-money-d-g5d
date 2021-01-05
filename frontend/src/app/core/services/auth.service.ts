@@ -26,11 +26,11 @@ export class AuthService {
     if (token !== null){
 
       const tokenDecode = jwt_decode(token);
-      
+
       const currentUser: User = {
         id: parseInt(tokenDecode['nameid'], 10),
         mail: tokenDecode['email'],
-        nombre: tokenDecode['firstname']
+        Firstname: tokenDecode['firstname']
       };
       return currentUser;
     }
