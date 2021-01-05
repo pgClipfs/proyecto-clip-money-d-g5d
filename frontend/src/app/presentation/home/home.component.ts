@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
         type: 'U$D'
       }
     ];
-    console.log(this.accounts);
+
   }
 
 
