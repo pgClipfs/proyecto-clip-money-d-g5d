@@ -1,0 +1,45 @@
+import { Component, OnInit } from '@angular/core';
+import { Deposito } from '../../../core/models/deposito';
+import { DepositService } from '../../../core/services/deposit/deposit.service';
+import { Cuenta } from '../../../core/models/cuenta';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { User, UserRegister } from 'src/app/core/models/usuario';
+import { AuthService } from '../../../core/services/auth.service';
+
+@Component({
+  selector: 'app-deposit',
+  templateUrl: './deposit.component.html',
+  styleUrls: ['./deposit.component.scss']
+})
+export class DepositComponent implements OnInit {
+
+  cuenta:Cuenta;
+  form: FormGroup;
+  user:User
+
+
+  constructor( private depositService:DepositService, private authService:AuthService ) { }
+
+  async ngOnInit() {
+    this.form = new FormGroup({
+      monto: new FormControl('',Validators.maxLength(50))
+    });
+    this.user = this.authService.getCurrentUser();
+    this.cuenta =  (await this.depositService.getDeposit(this.user.id)).Object;
+    
+
+    console.log("this.cuenta")
+    console.log(this.cuenta)
+  }
+
+
+  // async getDepositar(){
+  //   this.cuenta =  (await this.depositService.getDeposit(this.user.id)).Object; 
+  // }
+
+  async postDepositar(){
+    this.cuenta = (await this.depositService.postDeposit(this.cuenta, this.cuenta.amount)).Object;
+    console.log("Escamea3")
+  }
+
+}

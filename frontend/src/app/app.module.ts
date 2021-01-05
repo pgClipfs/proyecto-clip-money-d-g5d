@@ -8,11 +8,13 @@ import { ApplicationModule } from './application/application.module';
 import { SharedModule } from './presentation/shared/shared.module';
 import { LoginComponent } from './presentation/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DepositComponent} from './presentation/shared/deposit/deposit.component'
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DepositComponent
   ],
   imports: [
     BrowserModule,
