@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { User, UserRegister } from 'src/app/core/models/usuario';
 import { AuthService } from '../../../core/services/auth.service';
 import { PostUserMoney } from 'src/app/core/models/postUserMoney';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-deposit',
@@ -17,53 +18,45 @@ export class DepositComponent implements OnInit {
   cuenta:Cuenta;
   form: FormGroup;
   user:User
+  isSubmitted: boolean = false;
 
-
-  constructor( private depositService:DepositService, private authService:AuthService, private formBuilder:FormBuilder ) { }
+  constructor(private depositService:DepositService,
+              private authService:AuthService,
+              private formBuilder:FormBuilder,
+              private router: Router) { }
 
   async ngOnInit() {
     this.form = this.formBuilder.group({
-      monto: new FormControl('',Validators.maxLength(50))
+      monto: new FormControl('',[Validators.maxLength(50), Validators.required])
     });
     this.user = this.authService.getCurrentUser();
     this.cuenta =  (await this.depositService.getDeposit(this.user.id)).Object;
-    
 
-    console.log("this.cuenta")
-    console.log(this.cuenta)
   }
 
-
-  // async getDepositar(){
-  //   this.cuenta =  (await this.depositService.getDeposit(this.user.id)).Object; 
-  // }
-
   async postDepositar(){
-    const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
-    const monto = this.form.value.monto
-
-    if(monto>0){
+    this.isSubmitted = true;
+    if(this.form.valid){
+      const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
       this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
-      console.log("Escamea3")
-    } else{
-      console.log("Numero ingresado menor a 0")
-      alert("Numero ingresado menor a 0")
+      window.alert('Dinero depositado con éxito');
+      this.router.navigateByUrl('/home');
     }
-    
   }
 
   async postExtraer(){
-    const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
-    const monto = this.form.value.monto
-
-    if(monto<0){
-      this.cuenta = (await this.depositService.postExtract(postUserMoney)).Object;
-      console.log("Extraido")
-    } else{
-      console.log("Numero ingresado mayor a 0")
-      alert("Numero ingresado mayor a 0")
+    this.isSubmitted = true;
+    if(this.form.valid){
+      const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto * -1}
+      if(this.cuenta.Amount + postUserMoney.Amount < 0){
+        alert('No cuenta con saldo suficiente para realizar la extracción');
+      }else{
+        this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
+        alert('Dinero extraído con éxito');
+        this.router.navigateByUrl('/home');
+      }
     }
-    
+
   }
 
 }

@@ -24,14 +24,4 @@ export class DepositService {
     return await this.http.post<Result<Cuenta>>(`${environment.apiUrl}/account`, postUserMoney).toPromise();
   }
 
-  //Extraer dinero
-
-  async getExtract (userId: number){
-    return await this.http.get<Result<Cuenta>>(`${environment.apiUrl}/account/${userId}`).toPromise();
-  }
-
-  async postExtract( postUserMoney:PostUserMoney ){
-    return await this.http.post<Result<Cuenta>>(`${environment.apiUrl}/account`, postUserMoney).toPromise();
-  }
-
 }
