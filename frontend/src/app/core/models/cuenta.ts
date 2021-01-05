@@ -3,6 +3,7 @@ import { Value } from './value';
 
 export interface Cuenta {
     UserId: number;
+    Id:number;
     CreationDate: Date;
     CreationTime: Date;
     TypeAccountId: string;

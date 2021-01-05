@@ -28,7 +28,7 @@ namespace ClipMoney.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("{userId}")]
         public IActionResult GetAccountByUserId(int userId)
         {
             var result = _accountBusinessLogic.GetAccountByUserId(userId);

@@ -4,6 +4,7 @@ import { Cuenta } from '../../models/cuenta';
 import { UserToken } from '../../models/userToken.model';
 import { environment } from 'src/environments/environment';
 import { Result } from '../../models/result';
+import { PostUserMoney } from '../../models/postUserMoney';
 
 
 @Injectable({
@@ -19,8 +20,8 @@ export class DepositService {
     return await this.http.get<Result<Cuenta>>(`${environment.apiUrl}/account/${userId}`).toPromise();
   }
 
-  async postDeposit(cuenta:Cuenta, monto:number){
-    return await this.http.post<Result<Cuenta>>(`${environment.apiUrl}/account/${monto}`, cuenta).toPromise();
+  async postDeposit( postUserMoney:PostUserMoney ){
+    return await this.http.post<Result<Cuenta>>(`${environment.apiUrl}/account`, postUserMoney).toPromise();
   }
 
 }

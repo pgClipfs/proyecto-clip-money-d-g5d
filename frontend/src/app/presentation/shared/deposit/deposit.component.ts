@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Deposito } from '../../../core/models/deposito';
 import { DepositService } from '../../../core/services/deposit/deposit.service';
 import { Cuenta } from '../../../core/models/cuenta';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { User, UserRegister } from 'src/app/core/models/usuario';
 import { AuthService } from '../../../core/services/auth.service';
+import { PostUserMoney } from 'src/app/core/models/postUserMoney';
 
 @Component({
   selector: 'app-deposit',
@@ -18,10 +19,10 @@ export class DepositComponent implements OnInit {
   user:User
 
 
-  constructor( private depositService:DepositService, private authService:AuthService ) { }
+  constructor( private depositService:DepositService, private authService:AuthService, private formBuilder:FormBuilder ) { }
 
   async ngOnInit() {
-    this.form = new FormGroup({
+    this.form = this.formBuilder.group({
       monto: new FormControl('',Validators.maxLength(50))
     });
     this.user = this.authService.getCurrentUser();
@@ -38,7 +39,8 @@ export class DepositComponent implements OnInit {
   // }
 
   async postDepositar(){
-    this.cuenta = (await this.depositService.postDeposit(this.cuenta, this.cuenta.amount)).Object;
+    const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
+    this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
     console.log("Escamea3")
   }
 
