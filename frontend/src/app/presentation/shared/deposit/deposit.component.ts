@@ -40,8 +40,16 @@ export class DepositComponent implements OnInit {
 
   async postDepositar(){
     const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
-    this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
-    console.log("Escamea3")
+    const monto = this.form.value.monto
+
+    if(monto>0){
+      this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
+      console.log("Escamea3")
+    } else{
+      console.log("Numero ingresado menor a 0")
+      alert("Numero ingresado menor a 0")
+    }
+    
   }
 
 }
