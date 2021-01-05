@@ -9,12 +9,14 @@ import { SharedModule } from './presentation/shared/shared.module';
 import { LoginComponent } from './presentation/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DepositComponent} from './presentation/shared/deposit/deposit.component'
+import { TransferComponent } from './presentation/shared/transfer/transfer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DepositComponent
+    DepositComponent,
+    TransferComponent
   ],
   imports: [
     BrowserModule,

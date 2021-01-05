@@ -1,0 +1,25 @@
+<div class="containter mt-3">
+    <h1>Transferencia</h1>
+</div>
+
+<hr>
+
+<div class="card text-center row mx-auto p-3" style="width: auto; margin: auto auto">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+        <div>
+            <div class="form-group row ">
+                <label class="col-sm-2 col-form-label">Cuenta Saliente:</label>
+                <div class="col-sm-10">
+                    <input [formControl]="form.controls.monto" type="number" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row ">
+                <label class="col-sm-2 col-form-label">Cuenta entrante:</label>
+                <div class="col-sm-10">
+                    <input [formControl]="form.controls.monto" type="number" class="form-control">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary m-2">Transferir</button>
+        </div>
+    </div>
+</div>

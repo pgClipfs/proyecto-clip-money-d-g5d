@@ -1,11 +1,11 @@
 import { Value } from './value';
 
 export interface Transferencia {
-    id: number;
-    tipo: string;
-    idFrom: string;
-    idTo: string;
-    date: Date;
-    value: Value;
-    referencia: number;
+    Id: number;
+    Tipo?: string;
+    IdInboundAccount: number;
+    IdOutboundAccount: number;
+    Date?: Date;
+    Amount: number;
+    Referencia?: number;
 }

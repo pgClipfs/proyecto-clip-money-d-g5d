@@ -10,7 +10,7 @@ export interface User {
     dni?: number;
     cuentas?: Cuenta[];
     contactos?: Contacto[];
-    transferencias?: Transferencia[];
+    transferencias?: Transferencia;
     password?: string;
 }
 
