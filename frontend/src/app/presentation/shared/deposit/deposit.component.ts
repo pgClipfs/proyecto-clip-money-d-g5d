@@ -52,4 +52,18 @@ export class DepositComponent implements OnInit {
     
   }
 
+  async postExtraer(){
+    const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
+    const monto = this.form.value.monto
+
+    if(monto<0){
+      this.cuenta = (await this.depositService.postExtract(postUserMoney)).Object;
+      console.log("Extraido")
+    } else{
+      console.log("Numero ingresado mayor a 0")
+      alert("Numero ingresado mayor a 0")
+    }
+    
+  }
+
 }
