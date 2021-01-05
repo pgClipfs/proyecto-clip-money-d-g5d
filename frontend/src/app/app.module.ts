@@ -10,13 +10,16 @@ import { LoginComponent } from './presentation/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DepositComponent} from './presentation/shared/deposit/deposit.component'
 import { TransferComponent } from './presentation/shared/transfer/transfer.component';
+import { MovementsComponent } from './presentation/shared/movements/movements.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DepositComponent,
-    TransferComponent
+    TransferComponent,
+    MovementsComponent
   ],
   imports: [
     BrowserModule,
