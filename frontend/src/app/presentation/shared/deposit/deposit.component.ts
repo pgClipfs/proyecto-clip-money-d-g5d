@@ -30,7 +30,7 @@ export class DepositComponent implements OnInit {
       monto: new FormControl('',[Validators.maxLength(50), Validators.required])
     });
     this.user = this.authService.getCurrentUser();
-    this.cuenta =  (await this.depositService.getDeposit(this.user.id)).Object;
+    this.cuenta =  (await this.depositService.getDeposit(this.user.Id)).Object;
 
   }
 

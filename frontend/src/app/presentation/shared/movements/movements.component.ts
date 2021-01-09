@@ -24,7 +24,7 @@ export class MovementsComponent implements OnInit {
 
   async ngOnInit(){
     this.user = this.authService.getCurrentUser();
-    this.cuenta =  (await this.depositService.getDeposit(this.user.id)).Object;
+    this.cuenta =  (await this.depositService.getDeposit(this.user.Id)).Object;
     this.movimiento = (await this.movementsService.getMovements(this.cuenta.Id)).Object
     
     console.log(this.cuenta);

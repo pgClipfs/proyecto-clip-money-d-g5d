@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit(){
     this.currentUser = this.authService.getCurrentUser();
-    this.account = (await this.depositService.getDeposit(this.currentUser.id)).Object;
+    this.account = (await this.depositService.getDeposit(this.currentUser.Id)).Object;
 
     this.accounts = [
       {

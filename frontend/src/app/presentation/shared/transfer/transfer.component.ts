@@ -32,7 +32,7 @@ export class TransferComponent implements OnInit {
       cuentaEntrante: new FormControl('',Validators.maxLength(10))
     });
     this.user = this.authService.getCurrentUser();
-    this.cuenta =  (await this.depositService.getDeposit(this.user.id)).Object;
+    this.cuenta =  (await this.depositService.getDeposit(this.user.Id)).Object;
   }
   
 

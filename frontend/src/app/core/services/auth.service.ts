@@ -28,8 +28,8 @@ export class AuthService {
       const tokenDecode = jwt_decode(token);
 
       const currentUser: User = {
-        id: parseInt(tokenDecode['nameid'], 10),
-        mail: tokenDecode['email'],
+        Id: parseInt(tokenDecode['nameid'], 10),
+        Email: tokenDecode['email'],
         Firstname: tokenDecode['firstname']
       };
       return currentUser;

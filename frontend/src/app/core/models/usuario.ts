@@ -3,15 +3,16 @@ import { Cuenta } from './cuenta';
 import { Transferencia } from './transferencia';
 
 export interface User {
-    id: number;
+    Id?: number;
     Firstname: string;
     Lastname?: string;
-    mail: string;
-    dni?: number;
+    Email: string;
+    Dni?: number;
     cuentas?: Cuenta[];
     contactos?: Contacto[];
     transferencias?: Transferencia;
-    password?: string;
+    Password?: string;
+    Cbu?: number;
 }
 
 export interface UserRegister{
