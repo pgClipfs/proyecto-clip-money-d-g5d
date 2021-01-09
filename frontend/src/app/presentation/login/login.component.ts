@@ -67,4 +67,8 @@ export class LoginComponent implements OnInit {
     return this.passwordField.errors && this.passwordField.touched;
   }
 
+  onNavigate(){
+    this.router.navigateByUrl("sign-in");
+  }
+
 }

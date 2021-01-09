@@ -4,6 +4,7 @@ import { LoginComponent } from './presentation/login/login.component';
 import { DepositComponent } from './presentation/shared/deposit/deposit.component';
 import { TransferComponent } from './presentation/shared/transfer/transfer.component';
 import { MovementsComponent } from './presentation/shared/movements/movements.component';
+import { SignInComponent } from './presentation/shared/sign-in/sign-in.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -11,7 +12,9 @@ const routes: Routes = [
   { path: 'login', component:LoginComponent},
   { path: 'deposit', component:DepositComponent},
   { path: 'transfer', component:TransferComponent},
-  { path: 'movements', component:MovementsComponent}
+  { path: 'movements', component:MovementsComponent},
+  { path: 'sign-in', component:SignInComponent}
+
   
 ];
 

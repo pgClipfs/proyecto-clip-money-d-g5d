@@ -1,12 +1,12 @@
-@function calculate-height($height,$sections) {
+@function calculate-height($height, $sections) {
     @return $height / $sections;
-  }
+}
+
 $main-color: #0e8bff;
 $radius-1: 5px;
 $height-1: 75px;
 // Refactorizar set-box para setear "sections" segun la pagina
-$calculate-height: calculate-height(100vh,8);
+$calculate-height: calculate-height(100vh, 8);
 $space-between-box: .75vh;
-
 $font-size-1: 1.1rem;
 $text-color-1: white;

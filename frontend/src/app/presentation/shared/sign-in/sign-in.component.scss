@@ -1,5 +1,5 @@
-@import "../../../styles.scss";
-.login {
+@import "../../../../styles.scss";
+.sign-in {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,7 +18,7 @@
             max-width: 90px;
             margin: 50px 0;
         }
-        >.login__form {
+        >.sign__form {
             display: flex;
             flex-direction: column;
             & input {

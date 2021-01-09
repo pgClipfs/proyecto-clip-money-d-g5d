@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DepositComponent} from './presentation/shared/deposit/deposit.component'
 import { TransferComponent } from './presentation/shared/transfer/transfer.component';
 import { MovementsComponent } from './presentation/shared/movements/movements.component';
+import { SignInComponent } from './presentation/shared/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MovementsComponent } from './presentation/shared/movements/movements.co
     LoginComponent,
     DepositComponent,
     TransferComponent,
-    MovementsComponent
+    MovementsComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

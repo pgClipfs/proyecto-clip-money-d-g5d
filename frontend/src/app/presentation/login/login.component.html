@@ -3,18 +3,14 @@
         <h1>Hola!</h1>
         <img src="assets/images/wallet.svg" alt="wallet-icon">
         <form [formGroup]='form' novalidate (ngSubmit)="send()" class="login__form">
-            <input
-            formControlName='name'
-            [class.is-invalid]='nameFieldValid || isInvalid'
-            type="text" placeholder="Usuario"
-            >
-            <input
-            formControlName='password'
-            [class.is-invalid]='passwordFieldValid || isInvalid'
-            type="password"
-            placeholder="Contraseña"
-            >
+            <input formControlName='name' [class.is-invalid]='nameFieldValid || isInvalid' type="text" placeholder="Usuario">
+            <input formControlName='password' [class.is-invalid]='passwordFieldValid || isInvalid' type="password" placeholder="Contraseña">
             <button [disabled]="this.form.invalid" type="submit">Ingresar</button>
+            <div class="text-center mt-2">
+                <p>Ó</p>
+
+            </div>
+            <button type="button" class="mt-2" (click)="onNavigate()">Registrate</button>
             <div *ngIf="loading" class="d-flex justify-content-center">
                 <div class="spinner-border text-info mt-5" role="status">
                 </div>
