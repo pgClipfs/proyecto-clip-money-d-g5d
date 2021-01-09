@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
   currentUser: User;
   constructor(private depositService: DepositService, private authService: AuthService) { }
 
+  //TODO cuenta dolar
+
   async ngOnInit(){
     this.currentUser = this.authService.getCurrentUser();
     this.account = (await this.depositService.getDeposit(this.currentUser.Id)).Object;
