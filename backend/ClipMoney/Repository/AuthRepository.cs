@@ -17,7 +17,7 @@ namespace ClipMoney.Repository
             _context = context;
             _mapper = mapper;
         }
-        public void SignInUser(UserModel user)
+        public UserModel SignInUser(UserModel user)
         {
             var newUserDb = new Usuario();
             newUserDb.Mail = user.Email;
@@ -27,8 +27,10 @@ namespace ClipMoney.Repository
             newUserDb.Cbu = "12345";
             newUserDb.Dnidorsal = new byte[] { 255 };
             newUserDb.Dnifrontal = new byte[] { 234 };
-            _context.Usuarios.Add(newUserDb);
+            var newUser = _context.Usuarios.Add(newUserDb);
             _context.SaveChanges();
+
+            return _mapper.Map<UserModel>(newUser.Entity);
 
         }
 

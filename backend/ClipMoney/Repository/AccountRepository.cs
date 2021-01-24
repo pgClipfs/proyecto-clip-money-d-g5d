@@ -18,6 +18,12 @@ namespace ClipMoney.Repository
             _mapper = mapper;
         }
 
+        public void CreateAccount(AccountModel account)
+        {
+            _context.Cuenta.Add(_mapper.Map<Cuentum>(account));
+            _context.SaveChanges();
+        }
+
         public PostUserMoneyModel PostUserMoney(PostUserMoneyModel user)
         {
             var userAccount = (from c in _context.Cuenta
