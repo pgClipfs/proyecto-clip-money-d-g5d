@@ -49,5 +49,14 @@ namespace ClipMoney.Repository
 
             return _mapper.Map<AccountModel>(userAccount);
         }
+
+        public AccountModel GetAccountById(int id)
+        {
+            var account = (from a in _context.Cuenta
+                           where a.IdCuenta == id
+                           select a).FirstOrDefault();
+
+            return _mapper.Map<AccountModel>(account);
+        }
     }
 }

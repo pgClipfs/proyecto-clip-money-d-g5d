@@ -35,5 +35,13 @@ namespace ClipMoney.Controllers
             return Ok(result);
         }
 
+        [HttpPost("overdraft/{accountId}")]
+        public IActionResult PostOverdraft(int accountId)
+        {
+            var result = _accountBusinessLogic.PostOverdraft(accountId);
+
+            return Ok(result);
+        }
+
     }
 }
