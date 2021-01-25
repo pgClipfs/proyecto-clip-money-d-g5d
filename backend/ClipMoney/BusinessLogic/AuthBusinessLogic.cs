@@ -19,9 +19,11 @@ namespace ClipMoney.BusinessLogic
     public class AuthBusinessLogic
     {
         private readonly AuthRepository _authRepository;
-        public AuthBusinessLogic(AuthRepository authRepository)
+        private readonly AccountRepository _accountRepository;
+        public AuthBusinessLogic(AuthRepository authRepository, AccountRepository accountRepository)
         {
             _authRepository = authRepository;
+            _accountRepository = accountRepository;
         }
 
         /// <summary>
@@ -30,7 +32,19 @@ namespace ClipMoney.BusinessLogic
         /// <param name="user"></param>
         public void SignInUser(UserModel user)
         {
-            _authRepository.SignInUser(user);
+            var newUser = _authRepository.SignInUser(user);
+            var accountModel = new AccountModel
+            {
+                Amount = 0,
+                UserId = newUser.Id,
+                CreationDate = DateTime.Now,
+                CreationTime = DateTime.Now.TimeOfDay,
+                CryptocurrencyId = 1,
+                CurrencyTypeId = 1,
+                TypeAccountId = 1,
+                Movements = "null"
+            };
+            _accountRepository.CreateAccount(accountModel);
         }
 
         /// <summary>
