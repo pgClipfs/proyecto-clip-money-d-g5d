@@ -5,6 +5,8 @@ import { DepositComponent } from './presentation/shared/deposit/deposit.componen
 import { TransferComponent } from './presentation/shared/transfer/transfer.component';
 import { MovementsComponent } from './presentation/shared/movements/movements.component';
 import { SignInComponent } from './presentation/shared/sign-in/sign-in.component';
+import { PerfilComponent } from './presentation/perfil/perfil.component';
+import { PerfilEditComponent } from './presentation/perfil-edit/perfil-edit.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -13,8 +15,9 @@ const routes: Routes = [
   { path: 'deposit', component:DepositComponent},
   { path: 'transfer', component:TransferComponent},
   { path: 'movements', component:MovementsComponent},
-  { path: 'sign-in', component:SignInComponent}
-
+  { path: 'sign-in', component:SignInComponent},
+  { path: 'perfil', component:PerfilComponent},
+  { path: 'editar-perfil', component:PerfilEditComponent}
   
 ];
 

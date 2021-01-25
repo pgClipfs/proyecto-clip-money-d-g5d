@@ -1,6 +1,8 @@
 <div class="home">
-    <app-main-header [title]="'Perfil'" [icon]="'perfil'" [navigation]="'#'" [arrow]="'right'"></app-main-header>
     <div class="home__container">
+        <div class="perfil">
+            <a class="title ml-4" href="perfil">Perfil</a>
+        </div>
         <div class="cuentas">
             <p class="title">Cuentas</p>
             <app-accounts [accounts]='accounts'></app-accounts>
@@ -11,7 +13,7 @@
         <div class="tarjetas">
             <p class="title">Tarjetas</p>
         </div>
-        
+
         <div class="contactos">
             <a class="title ml-5" href="movements">Movimientos</a>
         </div>

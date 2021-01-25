@@ -35,10 +35,10 @@ namespace ClipMoney
         public void ConfigureServices(IServiceCollection services)
         {
             //Conexion a base de datos de Santi.
-            services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Santi")));
+            //services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Santi")));
 
-            //Conexion a base de datos de Valentín.
-            //services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Vale")));
+            //Conexion a base de datos de Valentï¿½n.
+            services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Vale")));
 
             //Conexion a base de datos de Nico.
             //services.AddDbContext<BilleteraVirtualContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Nico")));
