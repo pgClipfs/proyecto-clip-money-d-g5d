@@ -9,6 +9,7 @@ namespace ClipMoney.Models.Enums
     {
         Deposit = 1,
         Extraction = 2,
-        Transfer = 3
+        Transfer = 3,
+        Overdraft = 4
     }
 }
