@@ -12,6 +12,8 @@ import { DepositComponent} from './presentation/shared/deposit/deposit.component
 import { TransferComponent } from './presentation/shared/transfer/transfer.component';
 import { MovementsComponent } from './presentation/shared/movements/movements.component';
 import { SignInComponent } from './presentation/shared/sign-in/sign-in.component';
+import { PerfilComponent } from './presentation/perfil/perfil.component';
+import { PerfilEditComponent } from './presentation/perfil-edit/perfil-edit.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { SignInComponent } from './presentation/shared/sign-in/sign-in.component
     DepositComponent,
     TransferComponent,
     MovementsComponent,
-    SignInComponent
+    SignInComponent,
+    PerfilComponent,
+    PerfilEditComponent
   ],
   imports: [
     BrowserModule,

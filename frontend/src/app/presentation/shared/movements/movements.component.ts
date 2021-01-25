@@ -27,7 +27,12 @@ export class MovementsComponent implements OnInit {
     this.cuenta =  (await this.depositService.getDeposit(this.user.Id)).Object;
     this.movimiento = (await this.movementsService.getMovements(this.cuenta.Id)).Object
     
+
+    console.log("this.cuenta");
     console.log(this.cuenta);
+    console.log("this.movimiento");
+    console.log(this.movimiento);
+    
   }
 
   // async mostrarMovimiento(movimiento: Movements[]){

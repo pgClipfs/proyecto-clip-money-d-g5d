@@ -1,0 +1,15 @@
+<div class="editar-perfil">
+    <div class="editar-perfil__container">
+        <form [formGroup]="form" novalidate class="sign__form">
+            <input formControlName='email' [class.is-invalid]='emailFieldValid || isInvalid' type="text" placeholder="Email">
+            <input formControlName='password' [class.is-invalid]='passwordFieldValid || isInvalid' type="password" placeholder="Contraseña">
+            <input formControlName='passconfirm' [class.is-invalid]='passwordConfirmFieldValid || isInvalid' type="password" placeholder="Confirmar contraseña">
+
+            <button type="submit" [disabled]="this.form.invalid" (click)="editarPerfil()">Editar</button>
+            <div *ngIf="loading" class="d-flex justify-content-center">
+                <div class="spinner-border text-info mt-5" role="status">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
