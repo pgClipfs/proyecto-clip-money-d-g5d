@@ -4,9 +4,9 @@ import { Transferencia } from './transferencia';
 
 export interface User {
     Id?: number;
-    Firstname: string;
+    Firstname?: string;
     Lastname?: string;
-    Email: string;
+    Email?: string;
     Dni?: number;
     cuentas?: Cuenta[];
     contactos?: Contacto[];

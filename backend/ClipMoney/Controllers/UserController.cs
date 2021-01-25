@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ClipMoney.Controllers
 {
-    [Route("users")]
+    [Route("api/users")]
     [ApiController]
     public class UserController: ControllerBase
     {
