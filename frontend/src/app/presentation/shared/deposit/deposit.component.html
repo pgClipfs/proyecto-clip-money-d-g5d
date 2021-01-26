@@ -1,24 +1,47 @@
-<a class="btn btn-primary" routerLink="/home">Volver</a>
-<div class="containter mt-3">
-    <h1>Ingreso/Extracción</h1>
-</div>
+<ng-container *ngIf="!showTransaction; else Transaction">
+  <app-main-header
+    [arrow]="'left'"
+    [navigation]="'/home'"
+    [title]="'Ingreso/Extracción'"
+  ></app-main-header>
 
-<hr>
-
-<div class="card text-center row mx-auto p-3" style="width: auto; margin: auto auto">
+  <div
+    class="card text-center row mx-auto p-3"
+    style="width: auto; margin: auto auto;"
+  >
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-        <div>
-            <div class="form-group row ">
-                <label class="col-sm-3 col-form-label">Dinero:</label>
-                <div class="col-sm-9">
-                    <input [formControl]="form.controls.monto" type="number" class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="text-danger ml-4 col-9" *ngIf="isSubmitted && this.form.controls.monto.invalid">El campo es inválido</div>
-            </div>
-            <button type="submit" class="btn btn-primary m-2" (click)="postDepositar()">Depositar</button>
-            <button type="submit" class="btn btn-danger" (click)="postExtraer()">Extraer</button>
+      <div>
+        <div class="form-group row">
+          <p class="py-2 title-monto mx-auto">Monto</p>
+          <div class="col-sm-9 mx-4">
+            <input
+              [formControl]="form.controls.monto"
+              type="number"
+              class="form-control"
+            />
+          </div>
         </div>
+        <div class="row">
+          <div
+            class="text-danger ml-4 col-9"
+            *ngIf="isSubmitted && this.form.controls.monto.invalid"
+          >
+            El campo es inválido
+          </div>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" (click)="postDepositar()">Depositar</button>
+          <button type="submit" (click)="postExtraer()">Extraer</button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+</ng-container>
+
+<ng-template #Transaction>
+  <app-transaction
+    [title]="'Transferencia realizada.'"
+    [state]="'ok'"
+  >
+  <button type="submit" (click)="goto()">Ir al inicio</button></app-transaction>
+</ng-template>

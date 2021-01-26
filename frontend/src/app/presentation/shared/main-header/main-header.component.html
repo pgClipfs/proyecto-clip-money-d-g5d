@@ -1,6 +1,6 @@
 <div class="header">
   <div class="header__content">
-    <img src="assets/icons/{{ icon }}.svg" alt="{{ icon }}-icon" />
+    <!-- <img src="assets/icons/{{ icon }}.svg" alt="{{ icon }}-icon" /> -->
     <p>{{ title }}</p>
   </div>
   <img
@@ -8,5 +8,6 @@
     [ngClass]="arrow"
     src="assets/icons/arrow.svg"
     alt="arrow-{{ arrow }}-icon"
+    (click)="goTo()"
   />
 </div>

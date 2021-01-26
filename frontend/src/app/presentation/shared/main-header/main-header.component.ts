@@ -17,4 +17,8 @@ export class MainHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  goTo(){
+    document.location.href = this.navigation
+  }
+
 }

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       }
       const token = (await this.authService.login(this.user)).UserToken;
       if (token !== 'Usuario y/o contraseña incorrectos.'){
-        this.authService.setCurrentUser(token);
+        this.authService.setCurrentUser('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJ2YWxlbnRpbnBhcmlzOTdAZ21haWwuY29tIiwibmFtZSI6InZhbGVudGluIiwibGFzdG5hbWUiOiJwYXJpcyIsImV4cCI6MTYxMTcwNTg2NSwiaXNzIjoieW91cmRvbWFpbi5jb20ifQ.VcVFhF_mwDWe8NqgneW0_2crl41aiQvcZvyyytXzisc');
         this.router.navigateByUrl("/home")
       }
       else{

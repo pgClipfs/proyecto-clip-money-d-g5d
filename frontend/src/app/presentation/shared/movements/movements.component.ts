@@ -9,8 +9,7 @@ import { MovementsService } from '../../../core/services/movements/movements.ser
 @Component({
   selector: 'app-movements',
   templateUrl: './movements.component.html',
-  styles: [
-  ]
+  styleUrls: ['./movements.component.scss']
 })
 export class MovementsComponent implements OnInit {
 
@@ -26,7 +25,6 @@ export class MovementsComponent implements OnInit {
     this.user = this.authService.getCurrentUser();
     this.cuenta =  (await this.depositService.getDeposit(this.user.Id)).Object;
     this.movimiento = (await this.movementsService.getMovements(this.cuenta.Id)).Object
-    
 
     console.log("this.cuenta");
     console.log(this.cuenta);
