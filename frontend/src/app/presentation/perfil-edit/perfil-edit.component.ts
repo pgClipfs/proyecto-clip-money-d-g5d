@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./perfil-edit.component.scss']
 })
 export class PerfilEditComponent implements OnInit {
-  
+
   datosEditados:EditarPerfil
   currentUser: User;
   perfilEditado:User;
@@ -30,7 +30,7 @@ export class PerfilEditComponent implements OnInit {
     this.buildForm();
     this.currentUser = this.authService.getCurrentUser();
   }
-  
+
   private buildForm() {
     this.form = this.formBuilder.group({
       email: ["", [Validators.required]],
@@ -38,7 +38,7 @@ export class PerfilEditComponent implements OnInit {
       passconfirm: ["", [Validators.required]]
     });
   }
-  
+
   async editarPerfil(){
     if(this.form.value.passconfirm == this.form.value.password){
       if(this.form.valid){
@@ -48,19 +48,21 @@ export class PerfilEditComponent implements OnInit {
           Email: this.form.value.email,
           Password: this.form.value.password
         };
-        
+
       }
-      
+
+    }else{
+      window.alert('Las contraseñas no son iguales!');
     }
     this.perfilEditado = (await this.editPerfilService.putEditPerfil(this.datosEditados)).Object
-  
+
     window.alert('Perfil editado con éxito');
     this.router.navigateByUrl('/home');
 
     console.log("editar perfil datos")
     console.log(this.editarPerfil)
   }
-  
+
   get emailField() {
     return this.form.get("email");
   }

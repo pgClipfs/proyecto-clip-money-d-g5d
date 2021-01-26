@@ -45,20 +45,19 @@ export class DepositComponent implements OnInit {
       this.showTransaction = true;
       const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
       this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
-      window.alert('Dinero depositado con éxito');
-      
+
     }
   }
 
   async postExtraer(){
     this.isSubmitted = true;
     if(this.form.valid){
-      this.showTransaction = true;
       const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto * -1}
       if(this.cuenta.Amount + postUserMoney.Amount < 0){
         alert('No cuenta con saldo suficiente para realizar la extracción');
       }else{
         this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
+        this.showTransaction = true;
       }
     }
   }

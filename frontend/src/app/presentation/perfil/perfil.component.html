@@ -4,11 +4,11 @@
     <div class="perfil__container">
         <h1>Perfil</h1>
         <form [formGroup]="form" novalidate class="sign__form">
-            <input type="text" class="mt-5" placeholder="Nombre">{{user.Firstname}}
-            <input type="text" placeholder="Apellido">{{user.Lastname}}
-            <input type="number" placeholder="CBU">{{user.Cbu}}
-            <input type="text" placeholder="Email">{{user.Email}}
-            <button type="button" class="mt-2" (click)="onEditarPerfil()">Editar Perfil</button>
+            <input type="text" readonly value="{{user.Firstname}}" class="mt-5" placeholder="Nombre">
+            <input type="text" readonly value="{{user.Lastname}}" placeholder="Apellido">
+            <input type="number" readonly value="{{user.Cbu}}" placeholder="CBU">
+            <input type="text" readonly value="{{user.Email}}" placeholder="Email">
+            <button type="button" readonly class="mt-2" (click)="onEditarPerfil()">Editar Perfil</button>
         </form>
 
     </div>
