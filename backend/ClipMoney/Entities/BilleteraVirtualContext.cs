@@ -30,15 +30,6 @@ namespace ClipMoney.Entities
         public virtual DbSet<Transferencium> Transferencia { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=billetera_virtual;Trusted_Connection=True;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Criptomonedum>(entity =>
@@ -226,6 +217,10 @@ namespace ClipMoney.Entities
                 entity.ToTable("MovimientosXUsuario");
 
                 entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.FechaMovimiento)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fecha_movimiento");
 
                 entity.Property(e => e.IdCuenta).HasColumnName("id_cuenta");
 

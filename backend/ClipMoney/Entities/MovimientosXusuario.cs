@@ -12,6 +12,7 @@ namespace ClipMoney.Entities
         public decimal Monto { get; set; }
         public int IdCuenta { get; set; }
         public int IdCuentaDestino { get; set; }
+        public DateTime? FechaMovimiento { get; set; }
 
         public virtual Cuentum IdCuentaDestinoNavigation { get; set; }
         public virtual Cuentum IdCuentaNavigation { get; set; }

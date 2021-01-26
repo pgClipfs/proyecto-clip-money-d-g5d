@@ -28,6 +28,7 @@ namespace ClipMoney.Repository
                              join cd in _context.Cuenta on m.IdCuentaDestino equals cd.IdCuenta
                              join ud in _context.Usuarios on cd.IdUsuario equals ud.IdUsuario
                              where m.IdCuenta == accountId
+                             orderby m.FechaMovimiento ascending
                              select new MovementModel 
                              {
                                  Id = m.Id,
@@ -45,7 +46,8 @@ namespace ClipMoney.Repository
                                      Firstname = ud.NombreUsuario,
                                      Lastname = ud.Apellido
                                  },
-                                 Amount = m.Monto
+                                 Amount = m.Monto,
+                                 DateMovement = m.FechaMovimiento
 
                              }).ToList();
             return movements;
