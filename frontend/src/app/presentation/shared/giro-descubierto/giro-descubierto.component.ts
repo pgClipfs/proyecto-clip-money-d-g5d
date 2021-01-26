@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./giro-descubierto.component.scss']
 })
 export class GiroDescubiertoComponent implements OnInit {
-  
+
   cuenta:User;
   userId
   giroDescubierto: User
@@ -20,7 +20,7 @@ export class GiroDescubiertoComponent implements OnInit {
               private router: Router) { }
 
   async ngOnInit() {
-    
+
     //lo utilizamos para traer los datos de sesion de dicho usuario
     this.cuenta = this.authService.getCurrentUser();
     console.log("this.cuenta")
@@ -33,9 +33,15 @@ export class GiroDescubiertoComponent implements OnInit {
   }
 
   async onGiroDescubierto(){
-    this.giroDescubierto = (await this.giroDescubiertoService.GetGiroDescubierto(this.userId.Id)).Object
-    window.alert('Giro asignado con éxito!');
-    this.router.navigateByUrl('/home');
+    const result = await this.giroDescubiertoService.GetGiroDescubierto(this.userId.Id);
+    this.giroDescubierto = (result).Object
+    if(result.Ok){
+      window.alert('Giro asignado con éxito!');
+      this.router.navigateByUrl('/home');
+    }else{
+      window.alert(result.ErrorsText);
+      this.router.navigateByUrl('/home');
+    }
 
     console.log("this.giroDescubierto")
     console.log(this.giroDescubierto)
