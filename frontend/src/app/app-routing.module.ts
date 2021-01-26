@@ -7,6 +7,7 @@ import { MovementsComponent } from './presentation/shared/movements/movements.co
 import { SignInComponent } from './presentation/shared/sign-in/sign-in.component';
 import { PerfilComponent } from './presentation/perfil/perfil.component';
 import { PerfilEditComponent } from './presentation/perfil-edit/perfil-edit.component';
+import { GiroDescubiertoComponent } from './presentation/shared/giro-descubierto/giro-descubierto.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'movements', component:MovementsComponent},
   { path: 'sign-in', component:SignInComponent},
   { path: 'perfil', component:PerfilComponent},
-  { path: 'editar-perfil', component:PerfilEditComponent}
+  { path: 'editar-perfil', component:PerfilEditComponent},
+  { path: 'giro-descubierto', component:GiroDescubiertoComponent}
   
 ];
 

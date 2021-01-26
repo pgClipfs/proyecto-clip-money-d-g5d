@@ -14,7 +14,7 @@ import { MovementsComponent } from './presentation/shared/movements/movements.co
 import { SignInComponent } from './presentation/shared/sign-in/sign-in.component';
 import { PerfilComponent } from './presentation/perfil/perfil.component';
 import { PerfilEditComponent } from './presentation/perfil-edit/perfil-edit.component';
-
+import { GiroDescubiertoComponent } from './presentation/shared/giro-descubierto/giro-descubierto.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { PerfilEditComponent } from './presentation/perfil-edit/perfil-edit.comp
     MovementsComponent,
     SignInComponent,
     PerfilComponent,
-    PerfilEditComponent
+    PerfilEditComponent,
+    GiroDescubiertoComponent
   ],
   imports: [
     BrowserModule,
