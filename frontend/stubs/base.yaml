@@ -1,6 +1,20 @@
 - request:
-    url: ^/
-    method: HEAD
+    url: ^/api/Auth/login
+    method: POST
   response:
     status: 200
-    body: ''
+    file: ./login/login.json
+
+- request:
+    url: ^/api/account/1
+    method: GET
+  response:
+    status: 200
+    file: ./json/account.json
+
+- request:
+    url: ^/api/movement/3
+    method: GET
+  response:
+    status: 200
+    file: ./json/movement.json
