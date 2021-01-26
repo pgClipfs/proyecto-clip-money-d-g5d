@@ -5,6 +5,7 @@ import { EditPerfilService } from '../../core/services/edit-perfil/edit-perfil.s
 import { EditarPerfil } from '../../core/models/editarPerfil';
 import { Cuenta } from '../../core/models/cuenta';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil-edit',
@@ -22,7 +23,8 @@ export class PerfilEditComponent implements OnInit {
 
   constructor( private formBuilder: FormBuilder,
                private editPerfilService: EditPerfilService,
-               private authService: AuthService) { }
+               private authService: AuthService,
+               private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -51,6 +53,9 @@ export class PerfilEditComponent implements OnInit {
       
     }
     this.perfilEditado = (await this.editPerfilService.putEditPerfil(this.datosEditados)).Object
+  
+    window.alert('Perfil editado con éxito');
+    this.router.navigateByUrl('/home');
 
     console.log("editar perfil datos")
     console.log(this.editarPerfil)

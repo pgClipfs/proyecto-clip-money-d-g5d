@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User} from 'src/app/core/models/usuario';
 import { SingInService } from '../../../core/services/sign-in/sign-in.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit {
   isInvalid: Boolean = false;
 
   constructor( private formBuilder: FormBuilder,
-               private singInService: SingInService) { }
+               private singInService: SingInService,
+               private router: Router) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -46,6 +48,8 @@ export class SignInComponent implements OnInit {
     }
     // console.log(this.user)
     const userNew = (await this.singInService.register(this.user));
+    window.alert('Usuario Creado con éxito!');
+    this.router.navigateByUrl('/login');
   }
   
   get nombreField() {
