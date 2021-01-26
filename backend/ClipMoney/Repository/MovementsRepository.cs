@@ -28,7 +28,7 @@ namespace ClipMoney.Repository
                              join cd in _context.Cuenta on m.IdCuentaDestino equals cd.IdCuenta
                              join ud in _context.Usuarios on cd.IdUsuario equals ud.IdUsuario
                              where m.IdCuenta == accountId
-                             orderby m.FechaMovimiento ascending
+                             orderby m.FechaMovimiento descending
                              select new MovementModel 
                              {
                                  Id = m.Id,
