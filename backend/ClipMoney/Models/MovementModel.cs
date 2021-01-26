@@ -15,5 +15,6 @@ namespace ClipMoney.Models
         public string MovementName { get; set; }
         public UserModel User { get; set; }
         public UserModel UserDestination { get; set; }
+        public DateTime? DateMovement { get; set; }
     }
 }

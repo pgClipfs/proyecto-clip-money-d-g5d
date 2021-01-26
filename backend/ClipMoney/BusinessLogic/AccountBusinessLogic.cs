@@ -30,11 +30,27 @@ namespace ClipMoney.BusinessLogic
 
                 if (!result.Ok)
                     return result;
-
+                MovementModel movementOverdraft = null;
+                var movements = _movementsRepository.GetMovementsByAccountId(user.UserAccountId);
+                var movementDeposit = movements.Where(m => m.MovementId == (int)MovementEnum.Deposit).OrderByDescending(o => o.DateMovement).FirstOrDefault();
+                if(movementDeposit != null)
+                {
+                    movementOverdraft = movements.Where(x => x.MovementId == (int)MovementEnum.Overdraft && x.DateMovement > movementDeposit.DateMovement).OrderByDescending(p=>p.DateMovement).FirstOrDefault();
+                }
+                decimal amount;
+                if(movementOverdraft != null && user.Amount > 0)
+                {
+                    amount = user.Amount - movementOverdraft.Amount;
+                }
+                else
+                {
+                    amount = user.Amount;
+                }
                 var movement = new MovementModel();
                 movement.AccountId = user.UserAccountId;
                 movement.DestinationAccountId = user.UserAccountId;
-                movement.Amount = user.Amount;
+                movement.Amount = amount;
+                movement.DateMovement = DateTime.Now;
                 if (user.Amount < 0)
                 {
                     movement.MovementId = (int)MovementEnum.Extraction;
@@ -66,9 +82,16 @@ namespace ClipMoney.BusinessLogic
 
                 if (!result.Ok)
                     return result;
-
+                MovementModel movementDeposit = null;
                 var account = _accountRepository.GetAccountById(accountId);
-                if(account.Amount >= 0)
+                var movements = _movementsRepository.GetMovementsByAccountId(accountId);
+                var movementOverdraft = movements.Where(m => m.MovementId == (int)MovementEnum.Overdraft).OrderBy(o => o.DateMovement).FirstOrDefault();
+                if(movementOverdraft != null)
+                {
+                    movementDeposit = movements.Where(m => m.MovementId == (int)MovementEnum.Deposit && (m.DateMovement == null || m.DateMovement > movementOverdraft.DateMovement)).FirstOrDefault();
+                }
+                
+                if(account.Amount > 0 && (movementDeposit != null || movementOverdraft == null))
                 {
                     var amount = account.Amount * Convert.ToDecimal(0.1);
                     var postOverdraft = new PostUserMoneyModel
@@ -83,14 +106,38 @@ namespace ClipMoney.BusinessLogic
                         AccountId = account.Id,
                         DestinationAccountId = account.Id,
                         Amount = amount,
-                        MovementId = (int)MovementEnum.Overdraft
+                        MovementId = (int)MovementEnum.Overdraft,
+                        DateMovement = DateTime.Now
                     };
                     _movementsRepository.AddMovement(movement);
                 }
+                else if(account.Amount == 0 && (movementDeposit != null || movementOverdraft == null))
+                {
+                    var amount = movementDeposit.Amount * Convert.ToDecimal(0.1);
+                    var postOverdraft = new PostUserMoneyModel
+                    {
+                        Amount = amount,
+                        UserAccountId = account.Id
+                    };
+
+                    result.Object = _accountRepository.PostUserMoney(postOverdraft);
+                    var movement = new MovementModel
+                    {
+                        AccountId = account.Id,
+                        DestinationAccountId = account.Id,
+                        Amount = amount,
+                        MovementId = (int)MovementEnum.Overdraft,
+                        DateMovement = DateTime.Now
+                    };
+                    _movementsRepository.AddMovement(movement);
+                }
+                else if(account.Amount > 0 && movementDeposit == null)
+                {
+                    result.AddInputDataError("Debe primero realizar un deposito para girar al descubierto nuevamente.");
+                }
                 else if(account.Amount < 0)
                 {
-                    result.AddInputDataError("No se puede girar al descubierto con saldos negativos");
-                    return result;
+                    result.AddInputDataError("No se puede girar al descubierto con saldos negativos.");
                 }
                 
             }
