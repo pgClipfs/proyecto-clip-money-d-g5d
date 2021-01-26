@@ -19,6 +19,7 @@ export class DepositComponent implements OnInit {
   form: FormGroup;
   user:User
   isSubmitted: boolean = false;
+  showTransaction= false;
 
   constructor(private depositService:DepositService,
               private authService:AuthService,
@@ -34,29 +35,32 @@ export class DepositComponent implements OnInit {
 
   }
 
+  goto(){
+    this.router.navigateByUrl('/home');
+  }
+
   async postDepositar(){
     this.isSubmitted = true;
     if(this.form.valid){
+      this.showTransaction = true;
       const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto}
       this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
       window.alert('Dinero depositado con éxito');
-      this.router.navigateByUrl('/home');
+      
     }
   }
 
   async postExtraer(){
     this.isSubmitted = true;
     if(this.form.valid){
+      this.showTransaction = true;
       const postUserMoney: PostUserMoney = {UserAccountId: this.cuenta.Id, Amount: this.form.value.monto * -1}
       if(this.cuenta.Amount + postUserMoney.Amount < 0){
         alert('No cuenta con saldo suficiente para realizar la extracción');
       }else{
         this.cuenta = (await this.depositService.postDeposit(postUserMoney)).Object;
-        alert('Dinero extraído con éxito');
-        this.router.navigateByUrl('/home');
       }
     }
-
   }
 
 }

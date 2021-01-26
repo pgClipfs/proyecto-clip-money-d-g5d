@@ -1,0 +1,17 @@
+@import "../../../../styles.scss";
+.movements{
+    &__container{
+        border: 1.5px solid $main-color;
+        border-radius: $radius-1;
+        color: $main-color;
+        padding: 15px;
+        &--type{
+            font-size: $font-size-1;
+            font-weight: 500;
+        }
+        &--amount{
+            font-size: $font-size-1;
+            font-weight: bold;
+        }
+    }
+}

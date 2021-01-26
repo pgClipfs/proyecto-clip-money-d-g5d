@@ -1,0 +1,11 @@
+{
+    "Amount": 1500,
+    "CreationDate":"2021-01-25T00:00:00",
+    "CreationTime": "2021-01-25T00:00:00",
+    "CryptocurrencyId":1,
+    "CurrencyTypeId":1,
+    "Id":4,
+    "Movements":null,
+    "TypeAccountId":1,
+    "UserId": 1
+}

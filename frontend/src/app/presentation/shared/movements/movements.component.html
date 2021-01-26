@@ -1,21 +1,20 @@
-<a class="btn btn-primary" routerLink="/home">Volver</a>
-<table class="table table mt-2">
-    <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Cuenta</th>
-            <th scope="col">Cuenta destino</th>
-            <th scope="col">Movimiento</th>
-            <th scope="col">Monto</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let movimientos of movimiento">
-            <th scope="row">{{movimientos.Id}}</th>
-            <td scope="row">{{movimientos.User.Firstname}} {{movimientos.User.Lastname}}</td>
-            <td scope="row">{{movimientos.UserDestination.Firstname}} {{movimientos.UserDestination.Lastname}}</td>
-            <td scope="row">{{movimientos.MovementName}}</td>
-            <td scope="row">{{movimientos.Amount}}</td>
-        </tr>
-    </tbody>
-</table>
+<app-main-header [arrow]="'left'" [navigation]="'/home'" [title]="'Ultimos movimientos'"></app-main-header>
+
+<ng-container *ngFor="let movimientos of movimiento">
+  <div class="movements__container my-2 d-flex justify-content-between align-items-center">
+    <div>
+      <p class="movements__container--type">{{ movimientos.MovementName }}</p>
+      <div class="d-flex">
+        <p class="movements__container--user">
+          Desde {{ movimientos.User.Firstname }}
+          {{ movimientos.User.Lastname }} &nbsp;
+        </p>
+        <p class="movements__container--user-destination">
+          a {{ movimientos.UserDestination.Firstname }}
+          {{ movimientos.UserDestination.Lastname }}
+        </p>
+      </div>
+    </div>
+    <p class="movements__container--amount">$ {{ movimientos.Amount }}</p>
+  </div>
+</ng-container>
