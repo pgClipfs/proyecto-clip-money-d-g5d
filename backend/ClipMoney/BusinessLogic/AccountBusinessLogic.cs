@@ -28,6 +28,10 @@ namespace ClipMoney.BusinessLogic
                 if (user.Amount == 0)
                     result.AddInputDataError("El monto es requerido");
 
+                var account = _accountRepository.GetAccountById(user.UserAccountId);
+                if ((account.Amount + user.Amount) < 0)
+                    result.AddInputDataError("No se puede extraer con saldos negativos");
+
                 if (!result.Ok)
                     return result;
                 MovementModel movementOverdraft = null;
@@ -61,6 +65,7 @@ namespace ClipMoney.BusinessLogic
                 }
                 _movementsRepository.AddMovement(movement);
 
+                
                 result.Object = _accountRepository.PostUserMoney(user);
 
             }
@@ -85,7 +90,7 @@ namespace ClipMoney.BusinessLogic
                 MovementModel movementDeposit = null;
                 var account = _accountRepository.GetAccountById(accountId);
                 var movements = _movementsRepository.GetMovementsByAccountId(accountId);
-                var movementOverdraft = movements.Where(m => m.MovementId == (int)MovementEnum.Overdraft).OrderBy(o => o.DateMovement).FirstOrDefault();
+                var movementOverdraft = movements.Where(m => m.MovementId == (int)MovementEnum.Overdraft).OrderByDescending(o => o.DateMovement).FirstOrDefault();
                 if(movementOverdraft != null)
                 {
                     movementDeposit = movements.Where(m => m.MovementId == (int)MovementEnum.Deposit && (m.DateMovement == null || m.DateMovement > movementOverdraft.DateMovement)).FirstOrDefault();
